@@ -41,5 +41,25 @@
 : pixel-all-but-bottom-right ." ▛" ;
 : pixel-diagonal-up ." ▞" ;
 : pixel-diagonal-down ." ▚" ;
-
-\ TO-DO: ═║╚╝╠╬╣╦╩╔╗╭╮╯╰╱╲╳
+: diagonal-line-up ." ╱" ;
+: diagonal-line-down ." ╲" ;
+: diagonal-line-x ." ╳" ;
+: box-double-h ." ═" ;
+: box-double-v ." ║" ;
+: box-double-top-left ." ╔" ;
+: box-double-top-right ." ╗" ;
+: box-double-bottom-left ." ╚" ;
+: box-double-bottom-right ." ╝" ;
+: box-double-T-left ." ╠" ;
+: box-double-T-right ." ╣" ;
+: box-double-T-down ." ╦" ;
+: box-double-T-up ." ╩" ;
+: box-double-cross ." ╬" ;
+: circle-top-left ." ╭" ;
+: circle-top-right ." ╮" ;
+: circle-bottom-left ." ╰" ;
+: circle-bottom-right ." ╯" ;
+: triangle-up-1 ." ◢" ;
+: triangle-down-1 ." ◣" ;
+: triangle-up-2 ." ◤" ;
+: triangle-down-2 ." ◥" ;

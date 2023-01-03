@@ -1,12 +1,18 @@
 \ --------------------------------------------------------------------------------------------------------------------------------------------
-\ Map these Forth words to system commands
+\ Misc. stuff that doesn't belong anywhere else (yet) :D
 \ --------------------------------------------------------------------------------------------------------------------------------------------
 
 : pwd           s" pwd" system ;
 : up1           s" ../" set-dir ;
 : vim           s" vim" system ;
 : telnet        s" telnet" system ;
-: files         s" clear" system pwd 10 emit s" ls" system ;
+: files ( -- )
+	s" clear" system
+	bold yellow text pwd
+	reset 10 emit
+	s" ls" system
+;
+: cd            set-dir files ; \ example: s" ../" cd
 
 \ These are prefixed with "sys-" because they don't do
 \ the same as their ANSI escape code counterparts.  Like
@@ -30,3 +36,9 @@
 
 \ Useful for commands like sleep, usleep, ANSI escape codes etc. - anything that requires typing string versions of whole numbers greater than zero (i.e. 12345).
 : type-uint 0 <<# #s #> type #>> ;
+
+\ Clears/empties the stack
+: clear-stack ( -- )   depth 0 DO drop LOOP ;
+
+
+

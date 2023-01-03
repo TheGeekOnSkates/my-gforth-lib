@@ -3,15 +3,15 @@
 \ For even more: https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
 \ --------------------------------------------------------------------------------------------------------------------------------------------
 
-: black         0 ;
-: red           1 ;
-: green         2 ;
-: yellow        3 ;
-: blue          4 ;
-: pink          5 ;
-: cyan          6 ;
-: white         7 ;
-: default       9 ;
+0 constant black
+1 constant red
+2 constant green
+3 constant yellow
+4 constant blue
+5 constant pink
+6 constant cyan
+7 constant white
+9 constant default-color
 : bold          .\" \x1b[1m" ;
 : dark          .\" \x1b[2m" ;
 : text          .\" \x1b[3" 48 + emit ." m" ;
@@ -44,6 +44,7 @@
 \ https://gforth.org/manual/Formatted-numeric-output.html
 \ At any rate, the usage should be: x y cursor (where x and y are numbers on the stack)
 \ I've also attempted to encrypt it into die-hard Forthian shorthand below.
+\
+\ EDIT: I'm keeping it here in case I ever want it for another Forth,
+\ but just as an FYI, Gforth has an "at-xy" word that works exactly the same.
 : cursor ( x y -- )   .\" \x1b[" 0 <<# #s #> type #>> ." ;" 0 <<# #s #> type #>> ." H" ;
-
-

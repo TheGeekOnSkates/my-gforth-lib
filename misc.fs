@@ -32,7 +32,8 @@
 \ This uses Sox, a great Linux command-line tool for playing sounds.
 \ Again, not sure if I got the funky shorthand for stack effect down, so here's an example:
 \ s" my-sound.ogg" play
-: play  ( str* strlen --)   s\" play -q \"" pad place pad +place s\" \" 1> /dev/null 2> /dev/null" pad +place pad count system ;
+: play  ( str* strlen --)   s\" play -q \"" pad place pad +place s\" \" 1> /dev/null 2> /dev/null &" pad +place pad count system ;
+: play-sync  ( str* strlen --)   s\" play -q \"" pad place pad +place s\" \" 1> /dev/null 2> /dev/null" pad +place pad count system ;
 
 \ Useful for commands like sleep, usleep, ANSI escape codes etc. - anything that requires typing string versions of whole numbers greater than zero (i.e. 12345).
 : type-uint 0 <<# #s #> type #>> ;

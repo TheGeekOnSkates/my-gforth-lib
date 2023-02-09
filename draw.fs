@@ -7,6 +7,23 @@
 \ and n3 is the number of spaces to print (with reverse on) for the title - ideally the width of your terminal)
 \ example: s" Title Here" 80 title
 
+\ Shows right-aligned text
+: right-align ( str* length -- )
+	dup	\ Stack is now str* length length
+	cols	\ Put the number of columns (i.e. 80) on the stack
+	swap -	\ Now stack = str* length cols-length
+	
+	\ Now print that many spaces
+	0 DO
+		32 emit 
+	LOOP
+	
+	\ And type the string, and we're done
+	type
+;
+
+
+
 \ TO-DO: Add words for box-drawing characters, getting input from the user, etc.
 
 : fill-low-1 ." ▁" ;

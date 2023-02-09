@@ -95,8 +95,15 @@
 
 
 
-
 : isLeft ( n -- n )    dup 68 = IF left THEN ;
 : isRight ( n -- n )   dup 67 = IF right THEN ;
 : isUp ( n -- n )      dup 65 = IF up THEN ;
 : isDown ( n -- n )    dup 66 = IF down THEN ;
+
+
+: getchar ( -- key ) begin key? until key ;
+: getkey
+	getchar
+	key? -1 = if key then
+	key? -1 = if key then
+;

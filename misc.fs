@@ -19,10 +19,10 @@
 \ "reset" doesn't just reset terminal attributes; it also
 \ clears the screen.  Similarly, the ANSI "clear" doesn't
 \ actually clear the screen - you can scroll up to see what was "cleared".
-: sys-clear     s" clear" system ;
+: cls           s" clear" system ;
 : sys-reset     s" reset" system ;
 : clear-history s" rm ~/.gforth-history" system ; \ Clears the up-arrow history
-: edit-my-stuff s" vim ~/my-stuff.fs" system ;
+: edit-my-stuff s" micro ~/my-stuff.fs" system ;
 
 \ This uses Voxin, a really cool text-to-speech program providing the classic "Eloquence" voice on Linux.
 \ I'm still learning the conventional way of documenting stack effects, so I hope str* and strlen make sense (think C).
@@ -35,11 +35,16 @@
 : play  ( str* strlen --)   s\" play -q \"" pad place pad +place s\" \" 1> /dev/null 2> /dev/null &" pad +place pad count system ;
 : play-sync  ( str* strlen --)   s\" play -q \"" pad place pad +place s\" \" 1> /dev/null 2> /dev/null" pad +place pad count system ;
 
+: pic  ( str* strlen -- )   s\" ascii-image-converter \"" pad place pad +place s\" \" -C" pad +place pad count system ;
+
 \ Useful for commands like sleep, usleep, ANSI escape codes etc. - anything that requires typing string versions of whole numbers greater than zero (i.e. 12345).
 : type-uint 0 <<# #s #> type #>> ;
 
 \ Clears/empties the stack
-: clear-stack ( -- )   depth 0 DO drop LOOP ;
+\ Switching to "clear" like in my JSForth
+: clear ( -- )   depth 0 DO drop LOOP ;
+
+: root s" sudo su" system ; 
 
 
 

@@ -33,6 +33,8 @@
 : down          .\" \x1b[B" ;
 : right         .\" \x1b[C" ;
 : left          .\" \x1b[D" ;
+: show-cursor ( -- )    .\" \x1b[?25h" ;
+: hide-cursor ( -- )    .\" \x1b[?25l" ;
 
 \ Printing numbers is SURPRISINGLY complexificated... Processing . . . . . . . . xD
 \ Still wrapping my tiny human brain around it... hold area?  Conversion?

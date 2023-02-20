@@ -80,3 +80,16 @@
 : triangle-down-1 ." ◣" ;
 : triangle-up-2 ." ◤" ;
 : triangle-down-2 ." ◥" ;
+
+\ Special characters for Spanish
+: .`a ." á" ;
+: s`a s" á" ;
+: .`e ." é" ;
+: s`e s" é" ;
+: .`i ." í" ;
+: s`i s" í" ;
+: .`o ." ó" ;
+: s`o s" ó" ;
+: .`u ." ú" ;
+: s`u s" ú" ;
+\ To-do: Add capitals, also the N with a ~ and U with a :, and punctuation

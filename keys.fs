@@ -9,15 +9,8 @@
 \ : test   0 100 DO key key key isUp isDown isLeft isRight LOOP ;
 \
 \ TO-DO'S:
-\       1. Write a get-key word that handles some of the wacky
-\          escape-code shenanigans I just described, so the stack
-\          only contains one number - the key
-\       2. Learn how constants work in gForth, if they are a thing.
-\          If they're not, I can always do like I did in ansi.fs,
-\          just defining words like : key-left 66 ;
-\          EDIT: the syntax is: value constant (the word "constant") name
-\       3. Delete these is* words - handling keyboard input like this
-\          is obviously going to be different from one app to the next
+\       1. Finish getKey so it puts one of the following constants on the stack
+\       2. Finish adding constants :)
 \
 
 1   constant key-ctrl-A
@@ -93,17 +86,30 @@
 \ ...  
 
 
+\ Clears standard input (stdin)
+: DROP-KEYS ( -- )
+	BEGIN
+		KEY?
+		TRUE = IF
+			KEY DROP
+		THEN
+	KEY? FALSE = UNTIL
+;
 
+: getChar ( -- key ) begin key? until key ;
+: getKey
+	getChar
+	key? -1 = if key then
+	key? -1 = if key then
+;
+: escaped?
+	depth 3 < if 0			\ If depth < 3 then no
+	else 2 pick 27 = 		\ Return whether the 3rd number on the stack == 27
+	then
+;
 
+\ TO-DO: Rework these to use escaped?
 : isLeft ( n -- n )    dup 68 = IF left THEN ;
 : isRight ( n -- n )   dup 67 = IF right THEN ;
 : isUp ( n -- n )      dup 65 = IF up THEN ;
 : isDown ( n -- n )    dup 66 = IF down THEN ;
-
-
-: getchar ( -- key ) begin key? until key ;
-: getkey
-	getchar
-	key? -1 = if key then
-	key? -1 = if key then
-;

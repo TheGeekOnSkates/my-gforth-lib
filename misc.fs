@@ -41,10 +41,24 @@
 : type-uint 0 <<# #s #> type #>> ;
 
 \ Clears/empties the stack
-\ Switching to "clear" like in my JSForth
-: clear ( -- )   depth 0 DO drop LOOP ;
+\ Clears/empties the stack
+\ NOTE: There was a bug; when depth = 0, it was freezing.
+\ idk why "0 0 do ... loop" would cause a freeze (you'd think it would
+\ just return immediately) but it must somehow be an infinite loop.
+\ Anyway, now having the dup and the if-statement fixes that.
+: clear-stack ( -- )
+	depth dup 0 > if
+		0 do drop loop
+	then
+;
 
 : root s" sudo su" system ; 
 
+: confirm ( string* stringLength -- true|false )
+	yellow text type reset
+	10 emit
+	." Press " blue text ." ENTER" reset ."  for yes, or any other key for no: "
+	key 13 = if true else false then
+;
 
 
